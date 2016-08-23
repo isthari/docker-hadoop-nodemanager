@@ -2,9 +2,11 @@ FROM isthari/hadoop-base:latest
 
 ENV JAVA_HOME /usr
 
-COPY yarn-site.xml /root/hadoop/etc/hadoop/yarn-site.xml
+COPY template-yarn-site.xml /root/template-yarn-site.xml
+COPY start.sh /root/start.sh
+RUN chmod oug+x /root/start.sh
 
-EXPOSE 8088 8030 8031 8032 8032
+#EXPOSE 8088 8030 8031 8032 8032
 
-CMD /root/hadoop/bin/yarn nodemanager 
+CMD /root/start.sh
 
